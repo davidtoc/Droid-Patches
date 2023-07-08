@@ -1,0 +1,25 @@
+### My First Droid Patch - Fixed Interval Harmony
+###
+### Requires a P2B8
+### 
+### Input pitch CV into I1
+### Output new pitch to O1
+### P1.1 will add to the output pitch in a discrete multiple of semitones 
+### from 0-13 (ie. unison to Octave)
+### 
+### By putting the original signal as well as the new signal from O1 into VCOs,
+### you can create a fixed interval harmony (or change the interval over time
+### by turning P1.
+
+
+[p2b8]
+
+[copy] # copy value from Input 1, add interval, output to Output 1
+    input = I1 + _SEMITONES
+    output = O1
+
+[pot]
+    output = _SEMITONES
+    discrete = 13  # 13 discrete possible outputs from 0-13
+    pot = P1.1
+    outputscale = 0.0833V # multiply discrete value by 1 semitone (1/12 octave = .08333v)
